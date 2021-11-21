@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.shopizer</groupId>
+  <artifactId>shopizer-parent</artifactId>
+  <versioning>
+    <versions>
+      <version>3.0.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20211121193639</lastUpdated>
+  </versioning>
+</metadata>
