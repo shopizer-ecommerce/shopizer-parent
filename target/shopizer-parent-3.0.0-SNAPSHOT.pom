@@ -42,8 +42,9 @@
 		<mockito.version>3.3.3</mockito.version>
 		<swagger.version>3.0.0</swagger.version>
 		<hibernate-envers.version>5.4.32.Final</hibernate-envers.version>
+		<javax-validation.version>2.0.1.Final</javax-validation.version>
+		<hibernate-validation.version>7.0.1.Final</hibernate-validation.version>
 
-		<h2.version>1.4.197</h2.version>
 	</properties>
 
 
@@ -56,17 +57,10 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
 			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-swagger2</artifactId>
-				<version>${swagger.version}</version>
-			</dependency>
-			<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
-			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-swagger-ui</artifactId>
-				<version>${swagger.version}</version>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-ui</artifactId>
+				<version>1.5.12</version>
 			</dependency>
 			<!-- Envers auditing -->
 			<dependency>
@@ -74,6 +68,21 @@
 				<artifactId>hibernate-envers</artifactId>
 				<version>${hibernate-envers.version}</version>
 			</dependency>
+			<!-- Validation -->
+			<!-- JCR 380 -->
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${javax-validation.version}</version>
+			</dependency>
+			<!-- Validation implementation -->
+			<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate-validation.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
