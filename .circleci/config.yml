@@ -12,12 +12,12 @@ jobs:
       - run:
           name: TTY
           command: export GPG_TTY=$(tty)
-      - circleci-maven-release-orb/run-maven-release
 
 workflows:
   build_and_release:
     jobs:
       - release
+      - circleci-maven-release-orb/run-maven-release
 
 
 # Define a job to be invoked later in a workflow.
