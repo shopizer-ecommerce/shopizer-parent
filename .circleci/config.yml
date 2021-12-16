@@ -15,7 +15,7 @@ jobs:
       - circleci-maven-release-orb/run-maven-release
 
 workflows:
-  main:
+  deploy:
     jobs:
       - deploy
 
