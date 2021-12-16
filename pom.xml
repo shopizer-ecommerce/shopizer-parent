@@ -7,6 +7,13 @@
 	<artifactId>shopizer-parent</artifactId>
 	<version>3.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	
+	
+	<scm>
+		<url>https://github.com/shopizer-ecommerce/shopizer-parent</url>
+		<connection>scm:git:git://github.com/shopizer-ecommerce/shopizer-parent.git</connection>
+		<developerConnection>scm:git:git@github.com:shopizer-ecommerce/shopizer-parent.git</developerConnection>
+	</scm>
 
 
 	<properties>
