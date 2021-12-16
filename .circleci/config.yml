@@ -6,10 +6,18 @@ version: 2.1
 orbs:
   circleci-maven-release-orb: sonatype-nexus-community/circleci-maven-release-orb@0.0.16
 
+jobs:
+  deploy:
+    steps:
+      - run:
+          name: TTY
+          command: export GPG_TTY=$(tty)
+      - circleci-maven-release-orb/run-maven-release
+
 workflows:
   main:
     jobs:
-      - circleci-maven-release-orb/run-maven-release
+      - deploy
 
 
 # Define a job to be invoked later in a workflow.
