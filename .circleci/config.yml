@@ -10,15 +10,21 @@ jobs:
   release:
     machine: true
     steps:
-      - run:
-          name: TTY
-          command: export GPG_TTY=$(tty)
+       - run:
+           name: Decode base 64
+           command: echo "$SETTINGS_XML" | base64 --decode > settings.xml
+       - run:
+            name: LS - ALL
+            command: ls -al
+      #- run:
+      #    name: TTY
+      #    command: export GPG_TTY=$(tty)
 
 workflows:
   build_and_release:
     jobs:
-      #- release
-      - circleci-maven-release-orb/run-maven-release
+      - release
+      #- circleci-maven-release-orb/run-maven-release
 
 
 # Define a job to be invoked later in a workflow.
