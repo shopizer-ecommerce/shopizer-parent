@@ -19,6 +19,8 @@ jobs:
        - run:
             name: CAT
             command: cat settings.xml
+       - persist_to_workspace:
+          root: .
       #- run:
       #    name: TTY
       #    command: export GPG_TTY=$(tty)
@@ -26,10 +28,14 @@ jobs:
 workflows:
   build_and_release:
     jobs:
-      - prepare
+      #- prepare
       - circleci-maven-release-orb/run-maven-release:
-          requires:
-            - prepare
+          pre-steps:
+            - run:
+               name: Decode base 64
+               command: echo "$SETTINGS_XML" | base64 --decode > settings.xml
+          #requires:
+          #  - prepare
 
 
 # Define a job to be invoked later in a workflow.
