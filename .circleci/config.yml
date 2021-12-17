@@ -16,6 +16,9 @@ jobs:
        - run:
             name: LS - ALL
             command: ls -al
+       - run:
+            name: CAT
+            command: cat settings.xml
       #- run:
       #    name: TTY
       #    command: export GPG_TTY=$(tty)
