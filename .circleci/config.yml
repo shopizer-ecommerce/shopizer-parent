@@ -7,7 +7,7 @@ orbs:
   circleci-maven-release-orb: sonatype-nexus-community/circleci-maven-release-orb@0.0.16
 
 jobs:
-  release:
+  prepare:
     machine: true
     steps:
        - run:
@@ -26,8 +26,10 @@ jobs:
 workflows:
   build_and_release:
     jobs:
-      - release
-      #- circleci-maven-release-orb/run-maven-release
+      - prepare
+      - circleci-maven-release-orb/run-maven-release
+          requires:
+            - prepare
 
 
 # Define a job to be invoked later in a workflow.
