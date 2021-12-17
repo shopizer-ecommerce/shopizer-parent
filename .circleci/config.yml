@@ -27,7 +27,7 @@ workflows:
   build_and_release:
     jobs:
       - prepare
-      - circleci-maven-release-orb/run-maven-release
+      - circleci-maven-release-orb/run-maven-release:
           requires:
             - prepare
 
