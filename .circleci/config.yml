@@ -7,9 +7,10 @@ orbs:
   circleci-maven-release-orb: sonatype-nexus-community/circleci-maven-release-orb@0.0.16
 
 jobs:
-  prepare:
+  build:
     machine: true
     steps:
+       - checkout
        - run:
            name: Decode base 64
            command: echo "$SETTINGS_XML" | base64 --decode > settings.xml
@@ -19,21 +20,17 @@ jobs:
        - run:
             name: CAT
             command: cat settings.xml
-       - persist_to_workspace:
-          root: .
-      #- run:
-      #    name: TTY
-      #    command: export GPG_TTY=$(tty)
+       - circleci-maven-release-orb/run-maven-release
 
 workflows:
   build_and_release:
     jobs:
-      #- prepare
-      - circleci-maven-release-orb/run-maven-release:
-          pre-steps:
-            - run:
-               name: Decode base 64
-               command: echo "$SETTINGS_XML" | base64 --decode > settings.xml
+      - build
+      #- circleci-maven-release-orb/run-maven-release:
+      #    pre-steps:
+      #      - run:
+      #         name: Decode base 64
+      #         command: echo "$SETTINGS_XML" | base64 --decode > settings.xml
           #requires:
           #  - prepare
 
