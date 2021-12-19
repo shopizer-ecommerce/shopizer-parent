@@ -10,9 +10,8 @@
 
 
 	<scm>
-		<url>https://github.com/shopizer-ecommerce/shopizer-parent</url>
-		<connection>scm:git:git://github.com/shopizer-ecommerce/shopizer-parent.git</connection>
 		<developerConnection>scm:git:git@github.com:shopizer-ecommerce/shopizer-parent.git</developerConnection>
+		<tag>HEAD</tag>
 	</scm>
 
 
@@ -185,7 +184,6 @@
 	</distributionManagement>
 
 	<build>
-
 			<plugins>
 				<plugin>
 					<artifactId>maven-release-plugin</artifactId>
@@ -194,9 +192,6 @@
 					</configuration>
 				</plugin>
 			</plugins>
-
-		
-		
        <!--
 		<plugins>
 			<plugin>
