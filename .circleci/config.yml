@@ -29,7 +29,7 @@ workflows:
 #      - build
       - circleci-maven-release-orb/run-maven-release:
           mvn-release-perform-command: 'mvn --batch-mode release:perform -DdryRun=true -s my-settings.xml'
-          ssh-fingerprints: '9f:90:b0:93:44:37:db:fa:8d:bb:a9:48:81:0d:3c:6a'
+          ssh-fingerprints: 'c6:a8:13:50:90:d1:aa:db:1c:bf:51:31:e2:d5:61:ed'
       #    pre-steps:
       #      - run:
       #         name: Decode base 64
