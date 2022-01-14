@@ -4,13 +4,13 @@
 	<groupId>com.shopizer</groupId>
 	<artifactId>shopizer-parent</artifactId>
 	<!-- version -->
-	<version>3.0.3</version>
+	<version>3.0.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 
 	<scm>
 		<developerConnection>scm:git:git@github.com:shopizer-ecommerce/shopizer-parent.git</developerConnection>
-		<tag>shopizer-parent-3.0.3</tag>
+		<tag>shopizer-parent-3.0.2</tag>
 	</scm>
 
 
