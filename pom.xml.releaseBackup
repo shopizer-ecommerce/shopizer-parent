@@ -13,8 +13,7 @@
 
 	<scm>
 		<developerConnection>scm:git:git@github.com:shopizer-ecommerce/shopizer-parent.git</developerConnection>
-		<url>https://github.com/shopizer-ecommerce/shopizer-parent/tree/master</url>
-		<tag>v3.0.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<licenses>

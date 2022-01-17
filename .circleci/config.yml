@@ -11,5 +11,5 @@ workflows:
   build_and_release:
     jobs:
       - circleci-maven-release-orb/run-maven-release:
-          mvn-release-perform-command: 'mvn --batch-mode release:perform -DdryRun=false -s settings.xml'
-          ssh-fingerprints: 'c6:a8:13:50:90:d1:aa:db:1c:bf:51:31:e2:d5:61:ed'
+          #mvn-release-perform-command: 'mvn --batch-mode release:perform -DdryRun=false -s settings.xml'
+          #ssh-fingerprints: 'c6:a8:13:50:90:d1:aa:db:1c:bf:51:31:e2:d5:61:ed'
