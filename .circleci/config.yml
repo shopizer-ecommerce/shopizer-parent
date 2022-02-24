@@ -3,13 +3,25 @@
 version: 2.1
 
 
-orbs:
-  circleci-maven-release-orb: sonatype-nexus-community/circleci-maven-release-orb@0.0.16
+#orbs:
+#  circleci-maven-release-orb: sonatype-nexus-community/circleci-maven-release-orb@0.0.16
 
-
-workflows:
-  build_and_release:
-    jobs:
-      - circleci-maven-release-orb/run-maven-release:
+jobs:
+  build:
+    steps:
+      - checkout
+      - run: echo "shopizer build and test (1)"
+      - run: ./mvnw clean install
+      - run: echo "$SETTINGS" | base64 --decode > settings.xml
+      - run: ./mvnw clean deploy -P release -S settings.xml
+#workflows:
+#  build_and_release:
+#    jobs:
+      #- circleci-maven-release-orb/run-maven-release:
           #mvn-release-perform-command: 'mvn --batch-mode release:perform -DdryRun=false -s settings.xml'
           #ssh-fingerprints: 'c6:a8:13:50:90:d1:aa:db:1c:bf:51:31:e2:d5:61:ed'
+
+workflows:
+  build_and_deploy:
+    jobs:
+      - build
