@@ -15,7 +15,7 @@ jobs:
       - run: echo "shopizer build and test (1)"
       - run: ./mvnw clean install
       - run: echo "$SETTINGS" | base64 --decode > settings.xml
-      - run: ./mvnw clean deploy -P release -S settings.xml
+      - run: ./mvnw clean deploy -P release -s settings.xml
 #workflows:
 #  build_and_release:
 #    jobs:
