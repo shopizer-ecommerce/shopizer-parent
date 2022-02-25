@@ -12,9 +12,13 @@ jobs:
       - image: cimg/openjdk:11.0.6
     steps:
       - checkout
-      - run: echo "shopizer build and test (1)"
+      - run: echo "shopizer build and test"
+      - run:
+         name: import GPG key
+         command: echo -e "$GPG_KEY" | gpg --import
       - run: ./mvnw clean install
       - run: echo "$SETTINGS" | base64 --decode > settings.xml
+      - run: cat settings.xml
       - run: ./mvnw clean deploy -P release -s settings.xml
 #workflows:
 #  build_and_release:
