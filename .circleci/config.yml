@@ -14,6 +14,7 @@ jobs:
       - checkout
       - run: echo "shopizer build and test"
       - run: echo -e $GPG_KEY > PRIVATE_GPG_KEY.asc
+      - run: cat PRIVATE_GPG_KEY.asc
       - run: gpg --import PRIVATE_GPG_KEY.asc
       - run: ./mvnw clean install
       - run: echo "$SETTINGS" | base64 --decode > settings.xml
