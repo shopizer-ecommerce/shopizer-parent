@@ -12,18 +12,12 @@ jobs:
       - image: cimg/openjdk:11.0.6
     steps:
       - checkout
-      - run: echo "shopizer build and test"
+      - run: echo "snapshot"
       - run: echo -e $GPG_KEY | base64 --decode | gpg --batch --no-tty --import --yes
       - run: ./mvnw clean install
       - run: echo "$SETTINGS" | base64 --decode > settings.xml
       - run: cat settings.xml
       - run: ./mvnw clean deploy -P release -s settings.xml
-#workflows:
-#  build_and_release:
-#    jobs:
-      #- circleci-maven-release-orb/run-maven-release:
-          #mvn-release-perform-command: 'mvn --batch-mode release:perform -DdryRun=false -s settings.xml'
-          #ssh-fingerprints: 'c6:a8:13:50:90:d1:aa:db:1c:bf:51:31:e2:d5:61:ed'
 
 workflows:
   build_and_deploy:

@@ -8,7 +8,7 @@
 	<name>shopizer-parent</name>
 	<description>Shopizer parent BOM</description>
 	<!-- version -->
-	<version>3.0.1-SNAPSHOT</version>
+	<version>3.0.1</version>
 	<packaging>pom</packaging>
 	<url>http://www.shopizer.com</url>
 
