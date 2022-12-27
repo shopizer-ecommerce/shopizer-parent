@@ -1,9 +1,8 @@
 # shopizer-parent
 Parent
 
-./mvnw release:clean
-./mvnw clean install
-./mvnw release:prepare
-./mvnw release:perform
+```
+./mvnw clean deploy -P release
+```
 
 https://oss.sonatype.org

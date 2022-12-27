@@ -8,7 +8,7 @@
 	<name>shopizer-parent</name>
 	<description>Shopizer parent BOM</description>
 	<!-- version -->
-	<version>3.2.2</version>
+	<version>3.3.0</version>
 	<packaging>pom</packaging>
 	<url>http://www.shopizer.com</url>
 
@@ -16,7 +16,7 @@
 	<scm>
 		<developerConnection>scm:git:git@github.com:shopizer-ecommerce/shopizer-parent.git</developerConnection>
 		<url>https://github.com/shopizer-ecommerce/shopizer-parent/tree/master</url>
-		<tag>v3.0.3</tag>
+		<tag>v3.3.0</tag>
 	</scm>
 
 	<licenses>
@@ -48,7 +48,7 @@
 		<hamcrest-all.version>1.3</hamcrest-all.version>
 
 
-		<springframework.boot.version>2.6.9</springframework.boot.version>
+		<springframework.boot.version>2.7.7</springframework.boot.version>
 
 
 		<!-- logging -->
