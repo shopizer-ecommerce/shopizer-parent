@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.shopizer</groupId>
 	<artifactId>shopizer-parent</artifactId>
 	<name>shopizer-parent</name>
 	<description>Shopizer parent BOM</description>
 	<!-- version -->
-	<version>3.3.0</version>
+	<version>4.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<url>http://www.shopizer.com</url>
 
@@ -16,7 +14,7 @@
 	<scm>
 		<developerConnection>scm:git:git@github.com:shopizer-ecommerce/shopizer-parent.git</developerConnection>
 		<url>https://github.com/shopizer-ecommerce/shopizer-parent/tree/master</url>
-		<tag>v3.3.0</tag>
+		<tag>v4.0.0</tag>
 	</scm>
 
 	<licenses>
@@ -40,67 +38,72 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 
-		<!-- used only in dependency management to force this version, not included 
-			as a direct dependency -->
-		<junit.version>4.13.2</junit.version>
-		<junit-jupiter.version>5.8.1</junit-jupiter.version>
-		<hamcrest.version>2.2</hamcrest.version>
-		<hamcrest-all.version>1.3</hamcrest-all.version>
+		<springframework.boot.version>3.0.6</springframework.boot.version>
+		<springframework.envers.version>3.0.5</springframework.envers.version>
+		<jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
+		<jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
+		<jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
+		<commons-lang3.version>3.12.0</commons-lang3.version>
+		<moneta-version>1.4.2</moneta-version>
+		<cache-api.version>1.1.1</cache-api.version>
+		<ehcache.version>3.7.1</ehcache.version>
+		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<hibernate.version>6.1.4.Final</hibernate.version>
+		<hibernate-validation.version>8.0.0.Final</hibernate-validation.version>
 
 
-		<springframework.boot.version>2.7.7</springframework.boot.version>
-
-
-		<!-- logging -->
-		<org.slf4j.version>1.7.32</org.slf4j.version>
-		<logback.version>1.2.6</logback.version>
-
-		<!-- plugins -->
+		<!--plugins-->
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 
-		<commons-io.version>2.11.0</commons-io.version>
-		<commons-lang.version>2.6</commons-lang.version>
-		<commons-lang3.version>3.12.0</commons-lang3.version>
-		<mockito.version>3.3.3</mockito.version>
-		<swagger.version>3.0.0</swagger.version>
-		<hibernate-envers.version>5.4.32.Final</hibernate-envers.version>
-		<javax-validation.version>2.0.1.Final</javax-validation.version>
-		<hibernate-validation.version>7.0.1.Final</hibernate-validation.version>
 
 	</properties>
 
 
 	<dependencyManagement>
 		<dependencies>
+
+
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
+				<artifactId>spring-boot-starter-cache</artifactId>
 				<version>${springframework.boot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-actuator</artifactId>
+				<version>${springframework.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.cache</groupId>
+				<artifactId>cache-api</artifactId>
+				<version>${cache-api.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>${ehcache.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.springdoc</groupId>
 				<artifactId>springdoc-openapi-ui</artifactId>
-				<version>1.5.12</version>
+				<version>1.7.0</version>
 			</dependency>
-			<!-- Envers auditing -->
+
+			<!-- Hybernate -->
 			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-envers</artifactId>
-				<version>${hibernate-envers.version}</version>
+				<groupId>org.hibernate.orm</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate.version}</version>
 			</dependency>
-			<!-- Validation -->
-			<!-- JCR 380 -->
-			<dependency>
-				<groupId>javax.validation</groupId>
-				<artifactId>validation-api</artifactId>
-				<version>${javax-validation.version}</version>
-			</dependency>
-			<!-- Validation implementation -->
+
 			<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
 			<dependency>
 				<groupId>org.hibernate.validator</groupId>
@@ -108,77 +111,75 @@
 				<version>${hibernate-validation.version}</version>
 			</dependency>
 
+
+			<!-- Jakarta -->
 			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${org.slf4j.version}</version>
+				<groupId>jakarta.servlet</groupId>
+				<artifactId>jakarta.servlet-api</artifactId>
+				<version>${jakarta.servlet-api.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>jakarta.persistence</groupId>
+				<artifactId>jakarta.persistence-api</artifactId>
+				<version>${jakarta.persistence-api.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+			<dependency>
+				<groupId>jakarta.validation</groupId>
+				<artifactId>jakarta.validation-api</artifactId>
+				<version>${jakarta.validation-api.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-envers -->
+			<!--
+			<dependency>
+				<groupId>org.hibernate.orm</groupId>
+				<artifactId>hibernate-envers</artifactId>
+				<version>${hibernate-envers.version}</version>
+			</dependency>
+			-->
+
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-envers</artifactId>
+				<version>${springframework.envers.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.javamoney</groupId>
+				<artifactId>moneta</artifactId>
+				<version>${moneta-version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mapstruct</groupId>
+				<artifactId>mapstruct</artifactId>
+				<version>${mapstruct.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-api</artifactId>
 			</dependency>
 			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>${logback.version}</version>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-impl</artifactId>
 			</dependency>
 			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-core</artifactId>
-				<version>${logback.version}</version>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-jackson</artifactId>
 			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
-				<version>${org.slf4j.version}</version>
-			</dependency>
-			<!-- test -->
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-engine</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-params</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-api</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.vintage</groupId>
-				<artifactId>junit-vintage-engine</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest</artifactId>
-				<version>${hamcrest.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest-all</artifactId>
-				<version>${hamcrest-all.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-core</artifactId>
-				<version>${mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.maven.surefire</groupId>
-				<artifactId>surefire-logger-api</artifactId>
-				<version>${maven-surefire-plugin.version}</version>
-				<!-- to get around bug https://github.com/junit-team/junit5/issues/801 -->
-				<scope>test</scope>
-				<optional>true</optional>
-			</dependency>
+
 			<dependency>
 				<!-- Import dependency management from Spring Boot -->
 				<groupId>org.springframework.boot</groupId>
@@ -202,11 +203,7 @@
 	</distributionManagement>
 
 	<build>
-		<plugins>
-			<!-- <plugin> <artifactId>maven-release-plugin</artifactId> <version>3.0.0-M5</version> 
-				<configuration> <releaseProfiles>release</releaseProfiles> <tagNameFormat>v@{project.version}</tagNameFormat> 
-				</configuration> </plugin> -->
-		</plugins>
+		<plugins></plugins>
 	</build>
 
 	<profiles>
