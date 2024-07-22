@@ -6,7 +6,7 @@
 	<name>shopizer-parent</name>
 	<description>Shopizer parent BOM</description>
 	<!-- version -->
-	<version>4.0.0-SNAPSHOT</version>
+	<version>4.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<url>http://www.shopizer.com</url>
 
@@ -38,25 +38,27 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 
-		<springframework.boot.version>3.0.6</springframework.boot.version>
-		<springframework.envers.version>3.0.5</springframework.envers.version>
-		<jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
-		<jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
-		<jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
-		<commons-lang3.version>3.12.0</commons-lang3.version>
-		<moneta-version>1.4.2</moneta-version>
+		<springframework.boot.version>3.2.8</springframework.boot.version>
+		<!-- Spring data envers-->
+		<springframework.envers.version>3.3.2</springframework.envers.version>
+		<jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
+		<jakarta.persistence-api.version>3.2.0</jakarta.persistence-api.version>
+		<jakarta.validation-api.version>3.1.0</jakarta.validation-api.version>
+		<commons-lang3.version>3.15.0</commons-lang3.version>
+		<moneta-version>1.4.4</moneta-version>
 		<cache-api.version>1.1.1</cache-api.version>
-		<ehcache.version>3.7.1</ehcache.version>
+		<ehcache.version>3.10.8</ehcache.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
-		<hibernate.version>6.1.4.Final</hibernate.version>
-		<hibernate-validation.version>8.0.0.Final</hibernate-validation.version>
+		
+		<hibernate.version>6.5.2.Final</hibernate.version>
+		<hibernate-validation.version>8.0.1.Final</hibernate-validation.version>
 
 
 		<!--plugins-->
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 
 
 	</properties>
@@ -94,20 +96,21 @@
 			<dependency>
 				<groupId>org.springdoc</groupId>
 				<artifactId>springdoc-openapi-ui</artifactId>
+				<!--TODO-->
 				<version>1.7.0</version>
 			</dependency>
 
-			<!-- Hybernate -->
+			<!-- Hibernate -->
 			<dependency>
-				<groupId>org.hibernate.orm</groupId>
-				<artifactId>hibernate-core</artifactId>
+			    <groupId>org.hibernate.orm</groupId>
+			    <artifactId>hibernate-core</artifactId>
 				<version>${hibernate.version}</version>
 			</dependency>
 
 			<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
 			<dependency>
-				<groupId>org.hibernate.validator</groupId>
-				<artifactId>hibernate-validator</artifactId>
+    			<groupId>org.hibernate.validator</groupId>
+    			<artifactId>hibernate-validator</artifactId>
 				<version>${hibernate-validation.version}</version>
 			</dependency>
 
@@ -131,15 +134,6 @@
 				<artifactId>jakarta.validation-api</artifactId>
 				<version>${jakarta.validation-api.version}</version>
 			</dependency>
-
-			<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-envers -->
-			<!--
-			<dependency>
-				<groupId>org.hibernate.orm</groupId>
-				<artifactId>hibernate-envers</artifactId>
-				<version>${hibernate-envers.version}</version>
-			</dependency>
-			-->
 
 			<dependency>
 				<groupId>org.springframework.data</groupId>
