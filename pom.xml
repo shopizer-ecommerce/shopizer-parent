@@ -154,12 +154,6 @@
 			<!-- only sign during deploy phase -->
 			<build>
 				<plugins>
-
-
-					<profile>
-					<id>release</id>
-					<build>
-						<plugins>
 						<plugin>
 						<groupId>org.sonatype.central</groupId>
 						<artifactId>central-publishing-maven-plugin</artifactId>
@@ -287,9 +281,5 @@
 						</executions>
 					</plugin>
 					-->
-				</plugins>
-			</build>
-			
-		</profile>
 	</profiles>
 </project>
