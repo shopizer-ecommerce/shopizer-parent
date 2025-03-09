@@ -3,23 +3,30 @@
 version: 2.1
 
 
-#orbs:
-#  circleci-maven-release-orb: sonatype-nexus-community/circleci-maven-release-orb@0.0.16
-
+name: Publish package to the Maven Central Repository
+on:
+  release:
+    types: [created]
 jobs:
-  build:
-    docker:
-      - image: cimg/openjdk:11.0.6
+  publish:
+    runs-on: ubuntu-latest
     steps:
-      - checkout
-      - run: echo "snapshot"
-      - run: echo -e $GPG_KEY | base64 --decode | gpg --batch --no-tty --import --yes
-      - run: ./mvnw clean install
-      - run: echo "$SETTINGS" | base64 --decode > settings.xml
-      - run: cat settings.xml
-      - run: ./mvnw clean deploy -P release -s settings.xml
-
-workflows:
-  build_and_deploy:
-    jobs:
-      - build
+      - uses: actions/checkout@v4
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          server-id: central
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+          gpg-private-key: ${{ secrets.GPG_SIGNING_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+      - name: Set version
+        run: mvn versions:set -DnewVersion=${{ github.event.release.tag_name }}
+      - name: Publish package
+        run: mvn -P release --batch-mode deploy -DskipTests
+        env:
+          MAVEN_USERNAME: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_SIGNING_KEY_PASSWORD }}
