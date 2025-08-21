@@ -3,11 +3,16 @@ Parent
 
 https://central.sonatype.org/publish/publish-maven/#performing-a-snapshot-deployment
 
+
+-- 1
+
 ```
-./mvnw clean install -P release
-./mvnw clean deploy
+./mvnw clean install 
+./mvnw clean deploy -P release
 ```
 
-https://oss.sonatype.org
+-- 2
+https://s01.oss.sonatype.org/#welcome
 
-circle ci settings
+click staging repository
+staging repository close

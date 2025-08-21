@@ -6,7 +6,7 @@
 	<name>shopizer-parent</name>
 	<description>Shopizer parent BOM</description>
 	<!-- version -->
-	<version>4.0.1.2</version>
+	<version>4.0.1.4</version>
 	<packaging>pom</packaging>
 	<url>http://www.shopizer.com</url>
 
@@ -14,7 +14,7 @@
 	<scm>
 		<developerConnection>scm:git:git@github.com:shopizer-ecommerce/shopizer-parent.git</developerConnection>
 		<url>https://github.com/shopizer-ecommerce/shopizer-parent/tree/master</url>
-		<tag>v4.0.0</tag>
+		<tag>v4.X</tag>
 	</scm>
 
 	<licenses>
@@ -38,22 +38,22 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 
-		<springframework.boot.version>3.3.4</springframework.boot.version>
+		<springframework.boot.version>3.5.4</springframework.boot.version>
 		<!-- Spring data envers-->
 		<springframework.envers.version>3.3.2</springframework.envers.version>
-		<commons-lang3.version>3.15.0</commons-lang3.version>
+		<commons-lang3.version>3.17.0</commons-lang3.version>
 		<cache-api.version>1.1.1</cache-api.version>
 		<ehcache.version>3.10.8</ehcache.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
-		<springdoc.version>2.6.0</springdoc.version>
-		<logback-core.version>1.5.12</logback-core.version>
-		<slf4j.version>2.0.16</slf4j.version>
-		<postgresql.version>42.2.5</postgresql.version>
+		<springdoc.version>2.7.0</springdoc.version>
+		<logback-core.version>1.5.15</logback-core.version>
+		<slf4j.version>2.0.17</slf4j.version>
+		<postgresql.version>42.7.3</postgresql.version>
 		<springdoc.version>2.6.0</springdoc.version>
 
 		<!--plugins-->
-		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+		<maven-compiler-plugin.version>3.3.0</maven-compiler-plugin.version>
 		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
 		<java.version>21</java.version>
 	</properties>
@@ -97,6 +97,18 @@
 				<artifactId>commons-lang3</artifactId>
 				<version>${commons-lang3.version}</version>
 			</dependency>
+
+			<!-- Lombok -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<optional>true</optional>
+			</dependency>
+
+			 <dependency>
+            	<groupId>com.fasterxml.jackson.core</groupId>
+            	<artifactId>jackson-databind</artifactId>
+       		</dependency>
 
 			<dependency>
 				<groupId>org.mapstruct</groupId>
@@ -161,16 +173,6 @@
 			<!-- only sign during deploy phase -->
 			<build>
 				<plugins>
-						<plugin>
-						<groupId>org.sonatype.central</groupId>
-						<artifactId>central-publishing-maven-plugin</artifactId>
-						<version>0.7.0</version>
-						<extensions>true</extensions>
-						<configuration>
-							<autoReleaseAfterClose>true</autoReleaseAfterClose>
-							<publishingServerId>ossrh</publishingServerId>
-						</configuration>
-						</plugin>
 						<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
