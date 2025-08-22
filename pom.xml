@@ -46,6 +46,9 @@
 		<ehcache.version>3.10.8</ehcache.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<springdoc.version>2.7.0</springdoc.version>
+		<lombok.version>1.18.34</lombok.version>
+		<jackson.version>2.17.2</jackson.version>
+		<jjwt.version>0.12.7</jjwt.version>
 		<logback-core.version>1.5.15</logback-core.version>
 		<slf4j.version>2.0.17</slf4j.version>
 		<postgresql.version>42.7.3</postgresql.version>
@@ -102,12 +105,14 @@
 			<dependency>
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
 				<optional>true</optional>
 			</dependency>
 
 			 <dependency>
             	<groupId>com.fasterxml.jackson.core</groupId>
             	<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
        		</dependency>
 
 			<dependency>
@@ -131,14 +136,17 @@
 			<dependency>
 				<groupId>io.jsonwebtoken</groupId>
 				<artifactId>jjwt-api</artifactId>
+				<version>${jjwt.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.jsonwebtoken</groupId>
 				<artifactId>jjwt-impl</artifactId>
+				<version>${jjwt.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.jsonwebtoken</groupId>
 				<artifactId>jjwt-jackson</artifactId>
+				<version>${jjwt.version}</version>
 			</dependency>
 
 			<dependency>
@@ -152,17 +160,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
-
 	<build>
 		<plugins></plugins>
 	</build>
@@ -173,56 +170,76 @@
 			<!-- only sign during deploy phase -->
 			<build>
 				<plugins>
+				        <!-- Disable legacy deploy -->
+						<!--
 						<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>3.3.0</version>
-						<executions>
-						<execution>
-							<id>attach-sources</id>
-							<phase>verify</phase>
-							<goals>
-							<goal>jar-no-fork</goal>
-							</goals>
-						</execution>
-						</executions>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-deploy-plugin</artifactId>
+							<version>3.1.2</version>
+							<configuration>
+							<skip>true</skip>
+							</configuration>
+						</plugin>
+						-->
+				        <plugin>
+							<groupId>org.sonatype.central</groupId>
+							<artifactId>central-publishing-maven-plugin</artifactId>
+							<version>0.8.0</version>
+							<extensions>true</extensions>
+							<configuration>
+								<publishingServerId>central</publishingServerId>
+							</configuration>
 						</plugin>
 						<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>3.6.3</version>
-						<executions>
-						<execution>
-							<id>attach-javadoc</id>
-							<goals>
-							<goal>jar</goal>
-							</goals>
-						</execution>
-						</executions>
-						<configuration>
-						<stylesheet>java</stylesheet>
-						<doclint>none</doclint>
-						</configuration>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-source-plugin</artifactId>
+							<version>3.3.0</version>
+							<executions>
+							<execution>
+								<id>attach-sources</id>
+								<phase>verify</phase>
+								<goals>
+								<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+							</executions>
 						</plugin>
 						<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>3.1.0</version>
-						<executions>
-						<execution>
-							<id>sign-artifacts</id>
-							<phase>verify</phase>
-							<goals>
-							<goal>sign</goal>
-							</goals>
-						</execution>
-						</executions>
-						<configuration>
-						<gpgArguments>
-							<arg>--pinentry-mode</arg>
-							<arg>loopback</arg>
-						</gpgArguments>
-						</configuration>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>3.6.3</version>
+							<executions>
+							<execution>
+								<id>attach-javadoc</id>
+								<goals>
+								<goal>jar</goal>
+								</goals>
+							</execution>
+							</executions>
+							<configuration>
+							<stylesheet>java</stylesheet>
+							<doclint>none</doclint>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-gpg-plugin</artifactId>
+							<version>3.1.0</version>
+							<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+								<goal>sign</goal>
+								</goals>
+							</execution>
+							</executions>
+							<configuration>
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
+							</configuration>
 						</plugin>
 						</plugins>
 					</build>

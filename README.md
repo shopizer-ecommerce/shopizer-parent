@@ -12,7 +12,4 @@ https://central.sonatype.org/publish/publish-maven/#performing-a-snapshot-deploy
 ```
 
 -- 2
-https://s01.oss.sonatype.org/#welcome
-
-click staging repository
-staging repository close
+https://central.sonatype.com/
