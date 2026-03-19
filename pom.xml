@@ -6,10 +6,11 @@
   <name>shopizer-parent</name>
   <description>Shopizer parent BOM</description>
   <!-- version -->
-  <version>4.0.1.6</version>
+  <version>4.0.1.8</version>
   <packaging>pom</packaging>
-  <url>http://www.shopizer.com</url>
+  <url>https://www.shopizer.com</url>
   <scm>
+    <connection>scm:git:https://github.com/shopizer-ecommerce/shopizer-parent.git</connection>
     <developerConnection>scm:git:git@github.com:shopizer-ecommerce/shopizer-parent.git</developerConnection>
     <url>https://github.com/shopizer-ecommerce/shopizer-parent/tree/master</url>
     <tag>v4.X</tag>
@@ -25,7 +26,7 @@
       <name>Shopizer Team</name>
       <email>contact@shopizer.com</email>
       <organization>Shopizer</organization>
-      <organizationUrl>http://www.shopizer.com</organizationUrl>
+      <organizationUrl>https://www.shopizer.com</organizationUrl>
     </developer>
   </developers>
   <properties>
@@ -38,7 +39,6 @@
     <cache-api.version>1.1.1</cache-api.version>
     <ehcache.version>3.10.8</ehcache.version>
     <mapstruct.version>1.5.5.Final</mapstruct.version>
-    <springdoc.version>2.7.0</springdoc.version>
     <lombok.version>1.18.34</lombok.version>
     <jackson.version>2.17.2</jackson.version>
     <jjwt.version>0.12.7</jjwt.version>
@@ -47,6 +47,8 @@
     <postgresql.version>42.7.3</postgresql.version>
     <springdoc.version>2.8.13</springdoc.version>
     <spring-ai.version>1.0.1</spring-ai.version>
+    <moneta-version>1.4.5</moneta-version>
+
     <!--plugins-->
     <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -57,6 +59,11 @@
   </properties>
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.javamoney.moneta</groupId>
+        <artifactId>moneta-core</artifactId>
+        <version>${moneta-version}</version>
+      </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-cache</artifactId>
@@ -133,6 +140,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-redis</artifactId>
+        <version>${springframework.boot.version}</version>
       </dependency>
       <dependency>
         <!-- Import dependency management from Spring Boot -->
@@ -191,7 +199,7 @@
           <plugin>
             <groupId>org.sonatype.central</groupId>
             <artifactId>central-publishing-maven-plugin</artifactId>
-            <version>0.8.0</version>
+            <version>0.10.0</version>
             <extensions>true</extensions>
             <configuration>
               <publishingServerId>central</publishingServerId>
